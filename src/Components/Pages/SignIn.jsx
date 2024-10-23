@@ -2,10 +2,25 @@ import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Divider } from "@mui/material";
+import axios from "axios";
 import { FcGoogle } from "react-icons/fc";
 import { IoLogoApple } from "react-icons/io";
 
 const SignIn = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        "https://staging-be-ecom.techserve4u.com/api/user/signin",
+        { email, password }
+      );
+    } catch (error) {
+      alert("Please try again");
+      console.log(error);
+    }
+  };
   return (
     <>
       <div>
@@ -42,13 +57,15 @@ const SignIn = () => {
                   <input type="checkbox" name="check" className="mb-3" />
                   <p>Keep singed in to stay connected</p>
                 </div>
-                <button className="common-btn">Sign in </button>
+                <button className="common-btn" onClick={handleSubmit}>
+                  Sign in{" "}
+                </button>
                 <p className="text-center">
                   {" "}
-                  Don't have an account? <a href="">Sign Up</a>
+                  Don't have an account? <a href="./">Sign Up</a>
                 </p>
                 <hr />
-                <a href="" className="text-center">
+                <a href="./forgotPassword" className="text-center">
                   Forgot Password
                 </a>
               </div>
