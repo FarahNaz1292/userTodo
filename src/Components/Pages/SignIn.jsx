@@ -3,6 +3,7 @@ import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Divider } from "@mui/material";
 import axios from "axios";
+import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { IoLogoApple } from "react-icons/io";
 
@@ -21,6 +22,8 @@ const SignIn = () => {
       console.log(error);
     }
   };
+
+
   return (
     <>
       <div>
@@ -43,7 +46,7 @@ const SignIn = () => {
                     icon={faEnvelope}
                   ></FontAwesomeIcon>
                   <input type="email" required className="third-party-btn " />
-                  <label for="email">Email Address</label>
+                  <label htmlFor="email">Email Address</label>
                 </div>
                 <div className="input-group">
                   <FontAwesomeIcon
@@ -51,7 +54,7 @@ const SignIn = () => {
                     icon={faLock}
                   ></FontAwesomeIcon>
                   <input type="password" required className="third-party-btn" />
-                  <label for="password">Password</label>
+                  <label htmlFor="password">Password</label>
                 </div>
                 <div className="d-flex gap-2">
                   <input type="checkbox" name="check" className="mb-3" />

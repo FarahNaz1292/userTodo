@@ -1,5 +1,4 @@
 import { createRoot } from "react-dom/client";
-import * as React from "react";
 
 import { createBrowserRouter, RouterProvider, Link } from "react-router-dom";
 import SignIn from "./Components/Pages/SignIn.jsx";

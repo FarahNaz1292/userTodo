@@ -3,7 +3,8 @@ import TodosProvider from "../../Provider/TodosProvider";
 import { Navigate, Outlet } from "react-router-dom";
 
 const MainLayout = () => {
-  const [authtoken, setAuthToken] = useState(false);
+  const [authtoken, setAuthToken] = useState(null); // Use null to indicate loading state
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -12,12 +13,16 @@ const MainLayout = () => {
       setAuthToken(false);
     }
   }, []);
+
+  if (authtoken === null) {
+    // Show a loading state or nothing while checking auth
+    return <div>Loading...</div>;
+  }
+
   return (
-    <>
-      <TodosProvider>
-        {authtoken ? <Outlet></Outlet> : <Navigate to={"/signin"}></Navigate>}
-      </TodosProvider>
-    </>
+    <TodosProvider>
+      {authtoken ? <Outlet /> : <Navigate to={"/signin"} />}
+    </TodosProvider>
   );
 };
 

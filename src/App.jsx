@@ -1,9 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
-// import "./Styles/Pages/global-import.scss";
 import TodosProvider from "./Provider/TodosProvider";
 import { Navigate, Outlet } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 function App() {
   const [authtoken, setAuthToken] = useState(false);
   useEffect(() => {
