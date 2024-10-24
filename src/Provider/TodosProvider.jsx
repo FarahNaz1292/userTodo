@@ -6,11 +6,7 @@ export const todoContext = createContext();
 
 // eslint-disable-next-line react/prop-types
 const TodosProvider = ({ children }) => {
-
-  const value = {
-
-  }
-
+  const value = {};
   return (
     <>
       <todoContext.Provider value={value}>{children}</todoContext.Provider>

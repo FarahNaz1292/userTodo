@@ -35,7 +35,7 @@
 
 .form-box {
     width: 650px;
-    height: 70vh;
+    height: 60vh;
     margin-top: 100px;
     -webkit-box-shadow: 0px -4px 17px 8px rgba(240, 237, 240, 1);
     -moz-box-shadow: 0px -4px 17px 8px rgba(240, 237, 240, 1);
@@ -62,7 +62,7 @@ h3 {
 
 h4 {
     font-family: Be Vietnam Pro;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 400;
     line-height: 17.71px;
     text-align: left;
@@ -90,18 +90,22 @@ h4 {
 
 .input-group {
     position: relative;
+    padding: 20px;
+    border-radius: 5px;
 }
 
 .symbols {
     position: absolute;
     top: 40%;
     left: 5%;
+    padding-left: 5px;
 }
 
 .input-group input {
 
     font-size: 26px;
     padding: 0 10px;
+
 }
 
 .input-group label {
@@ -145,4 +149,36 @@ h4 {
     margin-top: 20px;
     margin-left: 15px;
     text-align: center;
-} */
+}
+
+.password-box {
+    width: 650px;
+    height: 40vh;
+    margin-top: 300px;
+    -webkit-box-shadow: 0px -4px 17px 8px rgba(240, 237, 240, 1);
+    -moz-box-shadow: 0px -4px 17px 8px rgba(240, 237, 240, 1);
+    box-shadow: 0px -4px 17px 8px rgba(240, 237, 240, 1);
+
+
+}
+
+.otp-text {
+    font-family: Be Vietnam Pro;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 15.18px;
+    text-align: left;
+    color: rgba(92, 89, 88, 1);
+
+
+}
+
+.code-text {
+    font-family: Be Vietnam Pro;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 19px;
+    text-align: center;
+    color: rgba(11, 42, 70, 1);
+
+}

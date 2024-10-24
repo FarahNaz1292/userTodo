@@ -1,4 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+// import "./Styles/Pages/global-import.scss";
+import "./App.css";
 import TodosProvider from "./Provider/TodosProvider";
 import { Navigate, Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";

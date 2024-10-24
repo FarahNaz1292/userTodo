@@ -5,9 +5,16 @@ import { Divider } from "@mui/material";
 import React from "react";
 import { FcGoogle } from "react-icons/fc";
 import { IoLogoApple } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const SignUp = () => {
+  // const location = useLocation();
+  // console.log(location.search);
+  // const myParams = new URLSearchParams(location.search).get("email");
+  // console.log(myParams);
+  //   const navigate = useNavigate();
+  //   navigate("/signin?email");
+
   return (
     <>
       <div>
@@ -43,18 +50,6 @@ const SignUp = () => {
                 <div className="input-group">
                   <FontAwesomeIcon
                     className="symbols"
-                    icon={faPhone}
-                  ></FontAwesomeIcon>
-                  <input
-                    type="phonenumber"
-                    required
-                    className="third-party-btn"
-                  />
-                  <label for="phonenumber">Phone Number</label>
-                </div>
-                <div className="input-group">
-                  <FontAwesomeIcon
-                    className="symbols"
                     icon={faLock}
                   ></FontAwesomeIcon>
                   <input type="password" required className="third-party-btn" />
@@ -76,7 +71,8 @@ const SignUp = () => {
 
                 <p className="text-center">
                   {" "}
-                  Already have an account? <Link href="/signin">Sign In</Link>
+                  Already have an account?{" "}
+                  <Link href="/signin?email">Sign In</Link>
                 </p>
                 <hr />
               </div>
