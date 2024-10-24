@@ -6,6 +6,9 @@ import SignIn from "./Components/Pages/SignIn.jsx";
 import SignUp from "./Components/Pages/SignUp.jsx";
 import TodosProvider from "./Provider/TodosProvider.jsx";
 import MainLayout from "./Components/Layout/MainLayout.jsx";
+import App from "./App.jsx";
+import ForgotPassword from "./Components/Pages/ForgotPassword.jsx";
+import Verification from "./Components/SharedPages/Verification.jsx";
 
 const router = createBrowserRouter([
   {
@@ -13,7 +16,7 @@ const router = createBrowserRouter([
     element: <MainLayout></MainLayout>,
     errorElement: (
       <div>
-        Oops Wrong way, go back to <Link to={"/signup"}>signin</Link>
+        Oops Wrong way, go back to <Link to={"verification"}>signin</Link>
       </div>
     ),
     children: [
@@ -24,8 +27,8 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/signup",
-    element: <SignUp></SignUp>,
+    path: "verification",
+    element: <Verification></Verification>,
   },
   {
     path: "/signin",

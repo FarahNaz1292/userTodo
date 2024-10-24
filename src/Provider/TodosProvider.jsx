@@ -5,7 +5,7 @@ export const todoContext = createContext();
 const TodosProvider = ({ children }) => {
   return (
     <>
-      <todoContext.Provider value={value}>{children}</todoContext.Provider>
+      <todoContext.Provider>{children}</todoContext.Provider>
     </>
   );
 };
