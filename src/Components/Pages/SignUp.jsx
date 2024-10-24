@@ -71,10 +71,8 @@ const SignUp = () => {
 
                 <p className="text-center">
                   {" "}
-                  Already have an account?{" "}
-                  <Link href="/signin?email">Sign In</Link>
+                  Already have an account? <Link to="/signin">Sign In</Link>
                 </p>
-                <hr />
               </div>
             </div>
           </div>

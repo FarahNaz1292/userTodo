@@ -1,14 +1,13 @@
 import { createRoot } from "react-dom/client";
 import * as React from "react";
-
 import { createBrowserRouter, RouterProvider, Link } from "react-router-dom";
 import SignIn from "./Components/Pages/SignIn.jsx";
 import SignUp from "./Components/Pages/SignUp.jsx";
 import TodosProvider from "./Provider/TodosProvider.jsx";
 import MainLayout from "./Components/Layout/MainLayout.jsx";
-import App from "./App.jsx";
-import ForgotPassword from "./Components/Pages/ForgotPassword.jsx";
 import Verification from "./Components/SharedPages/Verification.jsx";
+import Home from "./Components/Pages/Todo/Home.jsx";
+import ForgotPassword from "./Components/Pages/ForgotPassword.jsx";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +21,10 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
+        element: <Home></Home>,
+      },
+      {
+        path: "/today",
         element: <div></div>,
       },
     ],
@@ -31,10 +34,26 @@ const router = createBrowserRouter([
     element: <Verification></Verification>,
   },
   {
-    path: "/signin",
+    path: "signin",
     element: (
       <TodosProvider>
         <SignIn></SignIn>
+      </TodosProvider>
+    ),
+  },
+  {
+    path: "signup",
+    element: (
+      <TodosProvider>
+        <SignUp></SignUp>
+      </TodosProvider>
+    ),
+  },
+  {
+    path: "forgotpassword",
+    element: (
+      <TodosProvider>
+        <ForgotPassword></ForgotPassword>
       </TodosProvider>
     ),
   },

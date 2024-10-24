@@ -1,15 +1,14 @@
 .page-background {
-  background: rgb(246, 213, 213);
   background: linear-gradient(
     60deg,
     rgba(255, 255, 255, 1) 100%,
     rgba(246, 238, 252, 1) 100%
   );
   width: 100%;
-  height: 100vh;
+  height: 100%;
   position: relative;
   overflow: hidden;
-  ::before {
+  &::before {
     content: "";
     width: 654px;
     height: 654px;
@@ -17,14 +16,13 @@
     position: absolute;
     top: 63%;
     right: 83%;
-    background: rgb(202, 143, 241);
     background: linear-gradient(
       232deg,
       rgb(226, 195, 246) 0%,
       rgba(254, 254, 255, 1) 57%
     );
   }
-  ::after {
+  &::after {
     content: "";
     width: 600px;
     height: 600px;
@@ -32,7 +30,7 @@
     position: absolute;
     left: 83%;
     bottom: 63%;
-    background: rgb(230, 208, 245);
+
     background: linear-gradient(
       232deg,
       rgb(249, 242, 253, 1) 100%,
@@ -40,8 +38,8 @@
     );
   }
   .form-box {
-    width: 600px;
-    height: 70vh;
+    width: 700px;
+    height: 40vh;
     margin-top: 100px;
     -webkit-box-shadow: 0px -4px 17px 8px rgba(240, 237, 240, 1);
     -moz-box-shadow: 0px -4px 17px 8px rgba(240, 237, 240, 1);
@@ -49,7 +47,9 @@
     .form-content {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
       h3 {
         font-family: Be Vietnam Pro;
         font-size: 24px;
@@ -71,7 +71,7 @@
         width: 518px;
         height: 45px;
         gap: 0px;
-        border-radius: 6px 0px 0px 0px;
+        border-radius: 6px;
         border: 1px 0px 0px 0px;
         border-style: none;
         opacity: 0px;
@@ -83,7 +83,7 @@
       }
 
       .common-btn {
-        width: 517px;
+        width: 518px;
         height: 48px;
         top: 333px;
         padding: 14px 232px 14px 232px;
@@ -101,6 +101,41 @@
         margin-top: 20px;
         margin-left: 15px;
         text-align: center;
+      }
+
+      .input-group {
+        position: relative;
+        padding: 20px;
+        border-radius: 5px;
+        .symbols {
+          position: absolute;
+          top: 40%;
+          left: 5%;
+          padding-left: 5px;
+        }
+
+        input {
+          font-size: 26px;
+          padding: 0 10px;
+        }
+        label {
+          position: absolute;
+          top: 50%;
+          left: 15%;
+          transform: translateY(-40%);
+          font-size: 16px;
+          color: #5c5958;
+          pointer-events: none;
+          transition: 0.5s;
+          .input-group :focus ~ label,
+          .input-group input :valid ~ label {
+            top: 0;
+            font-size: 15px;
+            left: 15px;
+            background-color: #f2f0ff;
+            cursor: text;
+          }
+        }
       }
     }
   }

@@ -49,10 +49,10 @@ const SignIn = () => {
                   {" "}
                   Don't have an account? <Link to="/signup">Sign Up</Link>
                 </p>
-                <hr className="m-5" />
-                <a href="./forgotPassword" className="text-center">
+                <hr />
+                <Link to="/forgotPassword" className="text-center">
                   Forgot Password
-                </a>
+                </Link>
               </div>
             </div>
           </div>
