@@ -5,6 +5,7 @@ import { Divider } from "@mui/material";
 
 import { FcGoogle } from "react-icons/fc";
 import { IoLogoApple } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 const SignIn = () => {
   return (
@@ -29,7 +30,7 @@ const SignIn = () => {
                     icon={faEnvelope}
                   ></FontAwesomeIcon>
                   <input type="email" required className="third-party-btn " />
-                  <label for="email">Email Address</label>
+                  <label htmlFor="email">Email Address</label>
                 </div>
                 <div className="input-group">
                   <FontAwesomeIcon
@@ -37,7 +38,7 @@ const SignIn = () => {
                     icon={faLock}
                   ></FontAwesomeIcon>
                   <input type="password" required className="third-party-btn" />
-                  <label for="password">Password</label>
+                  <label htmlFor="password">Password</label>
                 </div>
                 <div className="d-flex gap-2">
                   <input type="checkbox" name="check" className="mb-3" />
@@ -46,9 +47,9 @@ const SignIn = () => {
                 <button className="common-btn">Sign in </button>
                 <p className="text-center">
                   {" "}
-                  Don't have an account? <a href="./">Sign Up</a>
+                  Don't have an account? <Link to="/signup">Sign Up</Link>
                 </p>
-                <hr />
+                <hr className="m-5" />
                 <a href="./forgotPassword" className="text-center">
                   Forgot Password
                 </a>

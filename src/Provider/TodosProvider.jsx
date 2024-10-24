@@ -3,9 +3,10 @@ import React, { createContext } from "react";
 export const todoContext = createContext();
 
 const TodosProvider = ({ children }) => {
+  const value = {};
   return (
     <>
-      <todoContext.Provider>{children}</todoContext.Provider>
+      <todoContext.Provider value={value}>{children}</todoContext.Provider>
     </>
   );
 };

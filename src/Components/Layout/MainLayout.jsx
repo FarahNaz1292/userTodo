@@ -3,15 +3,21 @@ import TodosProvider from "../../Provider/TodosProvider";
 import { Navigate, Outlet } from "react-router-dom";
 
 const MainLayout = () => {
-  const [authtoken, setAuthToken] = useState(false);
+  const [authtoken, setAuthToken] = useState(null);
+  const token = localStorage.getItem("token");
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    console.log("token", token);
+
     if (token) {
       setAuthToken(true);
     } else {
       setAuthToken(false);
     }
-  }, []);
+  }, [token]);
+  console.log(authtoken);
+  if (authtoken === null) {
+    return <div>Loading Animation</div>;
+  }
   return (
     <>
       <TodosProvider>
