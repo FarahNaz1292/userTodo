@@ -2,7 +2,8 @@ import { faEnvelope, faUser } from "@fortawesome/free-regular-svg-icons";
 import { faLock, faPhone } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Divider } from "@mui/material";
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { IoLogoApple } from "react-icons/io";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -14,6 +15,25 @@ const SignUp = () => {
   // console.log(myParams);
   //   const navigate = useNavigate();
   //   navigate("/signin?email");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const data = {
+        name: name,
+        email,
+        password,
+      };
+      const response = await axios.post(
+        "https://staging-be-ecom.techserve4u.com/api/user/signup",
+        data
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
@@ -31,38 +51,48 @@ const SignUp = () => {
                   <IoLogoApple size={25} /> Continue with Apple
                 </button>
                 <Divider className="divider-text">Or Sign Up With</Divider>
-                <div className="input-group">
-                  <FontAwesomeIcon
-                    className="symbols"
-                    icon={faUser}
-                  ></FontAwesomeIcon>
-                  <input type="name" required className="third-party-btn " />
-                  <label for="name">Name</label>
-                </div>
-                <div className="input-group">
-                  <FontAwesomeIcon
-                    className="symbols"
-                    icon={faEnvelope}
-                  ></FontAwesomeIcon>
-                  <input type="email" required className="third-party-btn" />
-                  <label for="email">Email Address</label>
-                </div>
-                <div className="input-group">
-                  <FontAwesomeIcon
-                    className="symbols"
-                    icon={faLock}
-                  ></FontAwesomeIcon>
-                  <input type="password" required className="third-party-btn" />
-                  <label for="password">Password</label>
-                </div>
-                <div className="input-group">
-                  <FontAwesomeIcon
-                    className="symbols"
-                    icon={faLock}
-                  ></FontAwesomeIcon>
-                  <input type="password" required className="third-party-btn" />
-                  <label for="password"> Confirm Password</label>
-                </div>
+                <form onSubmit={handleSubmit}>
+                  <div className="input-group">
+                    <FontAwesomeIcon
+                      className="symbols"
+                      icon={faUser}
+                    ></FontAwesomeIcon>
+                    <input
+                      type="name"
+                      required
+                      className="third-party-btn "
+                      onChange={(e) => setName(e.target.value)}
+                    />
+                    <label htmlFor="name">Name</label>
+                  </div>
+                  <div className="input-group">
+                    <FontAwesomeIcon
+                      className="symbols"
+                      icon={faEnvelope}
+                    ></FontAwesomeIcon>
+                    <input
+                      type="email"
+                      required
+                      className="third-party-btn"
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                    <label htmlFor="email">Email Address</label>
+                  </div>
+                  <div className="input-group">
+                    <FontAwesomeIcon
+                      className="symbols"
+                      icon={faLock}
+                    ></FontAwesomeIcon>
+                    <input
+                      type="password"
+                      required
+                      className="third-party-btn"
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <label htmlFor="password">Password</label>
+                  </div>
+                </form>
+
                 <div className="d-flex gap-2">
                   <input type="checkbox" name="check" className="mb-3" />
                   <p>Keep singed in to stay connected</p>
