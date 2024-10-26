@@ -2,12 +2,35 @@ import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Divider } from "@mui/material";
-
+import axios from "axios";
+import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { IoLogoApple } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignIn = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const handleSubmit = async (e) => {
+    e.prevantDefault();
+    try {
+      const response = await axios.post(
+        "https://staging-be-ecom.techserve4u.com/api/user/signin",
+        { email, password }
+      );
+      const token = response?.data?.token;
+      if (token) {
+        localStorage.setItem("user-token", token);
+      }
+      setTimeout(() => {
+        navigate("/");
+      }, 500);
+    } catch (error) {
+      alert("error Login");
+      console.log(error);
+    }
+  };
   return (
     <>
       <div>
