@@ -1,5 +1,4 @@
 import { Flex, Input } from "antd";
-import Title from "antd/es/skeleton/Title";
 import React from "react";
 
 const Verification = () => {
