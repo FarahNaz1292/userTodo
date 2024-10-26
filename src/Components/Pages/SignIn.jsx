@@ -23,9 +23,6 @@ const SignIn = () => {
       if (token) {
         localStorage.setItem("user-token", token);
       }
-      setTimeout(() => {
-        navigate("/");
-      }, 500);
     } catch (error) {
       alert("error Login");
       console.log(error);
@@ -47,22 +44,34 @@ const SignIn = () => {
                   <IoLogoApple size={25} /> Continue with Apple
                 </button>
                 <Divider className="divider-text">Or Sign In With</Divider>
-                <div className="input-group">
-                  <FontAwesomeIcon
-                    className="symbols"
-                    icon={faEnvelope}
-                  ></FontAwesomeIcon>
-                  <input type="email" required className="third-party-btn " />
-                  <label htmlFor="email">Email Address</label>
-                </div>
-                <div className="input-group">
-                  <FontAwesomeIcon
-                    className="symbols"
-                    icon={faLock}
-                  ></FontAwesomeIcon>
-                  <input type="password" required className="third-party-btn" />
-                  <label htmlFor="password">Password</label>
-                </div>
+                <form onSubmit={handleSubmit}>
+                  <div className="input-group">
+                    <FontAwesomeIcon
+                      className="symbols"
+                      icon={faEnvelope}
+                    ></FontAwesomeIcon>
+                    <input
+                      type="email"
+                      required
+                      className="third-party-btn "
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                    <label htmlFor="email">Email Address</label>
+                  </div>
+                  <div className="input-group">
+                    <FontAwesomeIcon
+                      className="symbols"
+                      icon={faLock}
+                    ></FontAwesomeIcon>
+                    <input
+                      type="password"
+                      required
+                      className="third-party-btn"
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <label htmlFor="password">Password</label>
+                  </div>
+                </form>
                 <div className="d-flex gap-2">
                   <input type="checkbox" name="check" className="mb-3" />
                   <p>Keep singed in to stay connected</p>
