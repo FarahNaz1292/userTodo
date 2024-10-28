@@ -6,7 +6,8 @@ import axios from "axios";
 import React, { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { IoLogoApple } from "react-icons/io";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import Verification from "../SharedPages/Verification";
 
 const SignUp = () => {
   // const location = useLocation();
@@ -18,7 +19,6 @@ const SignUp = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [otp, setOtp] = useState("");
   const [isOtpSend, setIsOtpSend] = useState(false);
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,70 +32,18 @@ const SignUp = () => {
         "https://staging-be-ecom.techserve4u.com/api/user/signup",
         data
       );
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  const handleOtp = async (e) => {
-    e.preventDefault();
-    try {
-      const data = {
-        otp,
-        email,
-      };
-      const response = await axios.post(
-        "https://staging-be-ecom.techserve4u.com/api/user/verifyotp",
-        data
-      );
       if (response?.data?.isOtpSend) {
         setIsOtpSend(true);
       }
-      console.log(response);
     } catch (error) {
       console.log(error);
     }
   };
-
   return (
     <>
       <div>
         {isOtpSend ? (
-          <div className="page-background">
-            <div className="d-flex align-items-center justify-content-center">
-              <div className="password-box">
-                <div className="form-content m-5">
-                  <h3>Verification</h3>
-                  <h4>
-                    Enter the 6-digit code that we sent to <br />
-                    s********0@gmail.com
-                  </h4>
-                  <form onSubmit={handleOtp}>
-                    <Flex gap="middle" align="flex-start" vertical>
-                      <Input.OTP
-                        length={6}
-                        onChange={(e) => setOtp(e.target.value)}
-                      />
-                    </Flex>
-                  </form>
-                  <button className="common-btn">Submit</button>
-                  <p className="text-center otp-text">
-                    OTP(One time password) valid for 5 minutes
-                  </p>
-                  <p className="code-text">
-                    Didn’t receive your code, or did the code time expire?{" "}
-                    <br />
-                    <a href="">Get a new one.</a>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <p className="terms-text">
-              By Clicking "Sign In", you agree to our{" "}
-              <a href="">
-                "Terms of <br /> Use and Privacy Policy"
-              </a>
-            </p>
-          </div>
+          <Verification email={email}></Verification>
         ) : (
           <div className="page-background">
             <div className="d-flex align-items-center justify-content-center">
@@ -150,13 +98,13 @@ const SignUp = () => {
                       />
                       <label htmlFor="password">Password</label>
                     </div>
-                  </form>
 
-                  <div className="d-flex gap-2">
-                    <input type="checkbox" name="check" className="mb-3" />
-                    <p>Keep singed in to stay connected</p>
-                  </div>
-                  <button className="common-btn">Sign Up </button>
+                    <div className="d-flex gap-2">
+                      <input type="checkbox" name="check" className="mb-3" />
+                      <p>Keep singed in to stay connected</p>
+                    </div>
+                    <button className="common-btn">Sign Up </button>
+                  </form>
 
                   <p className="text-center">
                     {" "}

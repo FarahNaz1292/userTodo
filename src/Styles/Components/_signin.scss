@@ -83,7 +83,7 @@
       }
 
       .common-btn {
-        width: 518px;
+        width: 100%;
         height: 48px;
         top: 333px;
         padding: 14px 232px 14px 232px;
@@ -116,25 +116,25 @@
 
         input {
           font-size: 26px;
+          outline: none;
           padding: 0 10px;
+          padding-left: 40px;
+          &:focus ~ label,
+          &:valid ~ label {
+            top: 20px;
+            font-size: 15px;
+            cursor: text;
+          }
         }
         label {
           position: absolute;
           top: 50%;
           left: 15%;
-          transform: translateY(-40%);
+          transform: translateY(-50%);
           font-size: 16px;
           color: #5c5958;
           pointer-events: none;
           transition: 0.5s;
-          .input-group :focus ~ label,
-          .input-group input :valid ~ label {
-            top: 0;
-            font-size: 15px;
-            left: 15px;
-            background-color: #f2f0ff;
-            cursor: text;
-          }
         }
       }
     }

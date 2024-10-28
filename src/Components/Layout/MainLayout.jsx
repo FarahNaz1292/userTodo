@@ -3,6 +3,7 @@ import "../../Styles/Pages/global-import.scss";
 import React, { useEffect, useState } from "react";
 import TodosProvider from "../../Provider/TodosProvider";
 import { Navigate, Outlet } from "react-router-dom";
+import Header from "../Pages/Todo/Header";
 const MainLayout = () => {
   const [authtoken, setAuthToken] = useState(null);
   const token = localStorage.getItem("token");
@@ -22,7 +23,14 @@ const MainLayout = () => {
   return (
     <>
       <TodosProvider>
-        {authtoken ? <Outlet></Outlet> : <Navigate to={"/signin"}></Navigate>}
+        {authtoken ? (
+          <div>
+            <Header></Header>
+            <Outlet></Outlet>
+          </div>
+        ) : (
+          <Navigate to={"/signin"}></Navigate>
+        )}
       </TodosProvider>
     </>
   );
