@@ -4,9 +4,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Divider } from "@mui/material";
 import { FcGoogle } from "react-icons/fc";
 import { IoLogoApple } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignIn = () => {
+
+  const Navigate = useNavigate()
+
   return (
     <>
       <div>
@@ -46,7 +49,7 @@ const SignIn = () => {
                 <button className="common-btn">Sign in </button>
                 <p className="text-center">
                   {" "}
-                  Don't have an account? <Link to="/signup">Sign Up</Link>
+                  Don't have an account? <button onClick={() => Navigate('/signup')}>Sign Up</button>
                 </p>
                 <hr className="m-5" />
                 <a href="./forgotPassword" className="text-center">

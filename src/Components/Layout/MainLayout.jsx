@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import TodosProvider from "../../Provider/TodosProvider";
 import { Navigate, Outlet } from "react-router-dom";
+import Navbar from "../SharedPages/Navbar";
 
 const MainLayout = () => {
   const [authtoken, setAuthToken] = useState(null);
@@ -18,9 +19,22 @@ const MainLayout = () => {
   if (authtoken === null) {
     return <div>Loading Animation</div>;
   }
+
+
+
+
+
   return (
     <TodosProvider>
-      {authtoken ? <Outlet /> : <Navigate to={"/signin"} />}
+      {authtoken ?
+
+        <div>
+          <Navbar />
+          <Outlet />
+        </div>
+
+
+        : <Navigate to={"/signin"} />}
     </TodosProvider>
   );
 };
