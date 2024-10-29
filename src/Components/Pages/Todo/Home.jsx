@@ -1,9 +1,17 @@
-import React from "react";
+import { useContext } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
 import { CiClock2 } from "react-icons/ci";
 import { FaEdit } from "react-icons/fa";
+import { todoContext } from "../../../Provider/TodosProvider";
 
 const Home = () => {
+  const { todo, setTodo } = useContext(todoContext);
+  // const payLoad = {
+  //   taskName,
+  //   taskAssignerName,
+  //   date: date.format("MM DD YYYY"),
+  //   time: time.format("hh:mm a"),
+  // };
   return (
     <>
       <div className="main-todo container">
@@ -26,11 +34,11 @@ const Home = () => {
                       <td>TaskName</td>
                       <td>TaskAssignerName</td>
                       <td>Date</td>
-                      <div className="task-icons d-flex gap-3 fs-3 ">
+                      <td className="task-icons d-flex gap-3 fs-3 ">
                         <FaEdit />
                         <CiClock2 />
                         <AiOutlineDelete />
-                      </div>
+                      </td>
                     </tr>
                   </tbody>
                 </table>
@@ -55,11 +63,11 @@ const Home = () => {
                     <td>TaskName</td>
                     <td>TaskAssignerName</td>
                     <td>Date</td>
-                    <div className="task-icons d-flex gap-3 fs-3 ">
+                    <td className="task-icons d-flex gap-3 fs-3 ">
                       <FaEdit />
                       <CiClock2 />
                       <AiOutlineDelete />
-                    </div>
+                    </td>
                   </tr>
                 </tbody>
               </table>

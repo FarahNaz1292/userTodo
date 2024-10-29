@@ -1,9 +1,19 @@
-import React from "react";
-import { AiOutlineDelete } from "react-icons/ai";
-import { CiCirclePlus, CiClock2 } from "react-icons/ci";
-import { FaEdit } from "react-icons/fa";
+import { useContext } from "react";
+import { CiCirclePlus } from "react-icons/ci";
+import { todoContext } from "../../../Provider/TodosProvider";
 
 const Header = () => {
+  const { todo, setTodo } = useContext(todoContext);
+  const handleClick = (e) => {
+    e.preventDefault();
+    if (tableData) {
+      setTodo(payLoad);
+    } else {
+      <div>
+        <img src="assets/images/nodata.avif" alt="" />
+      </div>;
+    }
+  };
   return (
     <>
       {" "}
@@ -13,6 +23,7 @@ const Header = () => {
         </div>
         <div className="btn-segement">
           <div className="todo-buttons">
+            {" "}
             <button>Today</button>
             <button>Pending</button>
             <button>Overdue</button>
@@ -22,7 +33,7 @@ const Header = () => {
         <div className="d-flex flex-column">
           <div className="d-flex justify-content-between m-3">
             <h3 className="fs-2 fw-bold">Tasks</h3>
-            <button className="add-todo-btn">
+            <button className="add-todo-btn" onClick={handleClick}>
               <CiCirclePlus className="fs-3" />
               {""}Add Task{" "}
             </button>
