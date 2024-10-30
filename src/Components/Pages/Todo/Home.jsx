@@ -33,10 +33,9 @@ const Home = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {todos?.map((todo) => {
-                      newtodo, (key = i);
+                    {todos?.map((todo, i) => {
                       return (
-                        <tr>
+                        <tr key={i}>
                           <td>{todo.taskName}</td>
                           <td>{todo.user}</td>
                           <td>{todo.date}</td>

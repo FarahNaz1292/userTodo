@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { CiCirclePlus } from "react-icons/ci";
-import { todoContext } from "../../../Provider/TodosProvider";
+import { getEmail, todoContext } from "../../../Provider/TodosProvider";
 import { NavLink } from "react-router-dom";
 import ModalComponent from "./ModalComponent";
 import { DatePicker } from "antd";
@@ -21,6 +21,7 @@ const Header = () => {
       setError("");
     }
     setTodos();
+    const email = getEmail();
   };
   return (
     <>
@@ -97,9 +98,9 @@ const Header = () => {
                       className="modal-input"
                       type="text"
                       name="user"
-                      value={user}
+                      value={getEmail()}
                       placeholder="Enter Your Email"
-                      onChange={(e) => setUser(e.target.value)}
+                      disabled={true}
                     />
                     <div className="date-picker d-flex align-items-center justify-content-center">
                       <p className="modal-input fs-4 m-2">

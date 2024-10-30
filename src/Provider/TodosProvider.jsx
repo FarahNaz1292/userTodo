@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-
+import { jwtDecode } from "jwt-decode";
 export const todoContext = createContext();
 
 const TodosProvider = ({ children }) => {
@@ -10,15 +10,23 @@ const TodosProvider = ({ children }) => {
     setTodos(newTodo);
   };
   const value = { setTodos, todos, addNewTodo };
-  // const jwtToken = localStorage.getItem("token");
-  // const decode = jwtDecode(jwtToken);
-  // console.log(decode);
 
   return (
     <>
       <todoContext.Provider value={value}>{children}</todoContext.Provider>
     </>
   );
+};
+export const getEmail = () => {
+  const jwtToken = localStorage.getItem("token");
+  if (jwtToken) {
+    const bearToken = jwtToken.split(" ");
+    const decode = jwtDecode(bearToken[1]);
+    return decode.email;
+  } else {
+    return " ";
+  }
+  console.log(decode);
 };
 
 export default TodosProvider;

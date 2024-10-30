@@ -26,6 +26,7 @@ export default function ModalComponent({ children, showModal, setShowModal }) {
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        maskClosable={false}
       >
         <Box sx={style}>{children}</Box>
       </Modal>
