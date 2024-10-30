@@ -1,13 +1,18 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 export const todoContext = createContext();
 
 const TodosProvider = ({ children }) => {
   const [todos, setTodos] = useState([]);
   const [user, setUser] = useState(" ");
+  useEffect(() => {
+    const localTodos = localStorage.getItem(todos, JSON.stringify(todos));
+  });
+
   const addNewTodo = (todo) => {
     const newTodo = [...todos, todo];
     setTodos(newTodo);
+    localStorage.setItem("todos", JSON.stringify(newTodo));
   };
   const value = { setTodos, todos, addNewTodo };
 

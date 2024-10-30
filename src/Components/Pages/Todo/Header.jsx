@@ -2,27 +2,42 @@ import { useContext, useState } from "react";
 import { CiCirclePlus } from "react-icons/ci";
 import { getEmail, todoContext } from "../../../Provider/TodosProvider";
 import { NavLink } from "react-router-dom";
-import ModalComponent from "./ModalComponent";
-import { DatePicker } from "antd";
+import { DatePicker, Modal, TimePicker } from "antd";
 import { FaRegClock } from "react-icons/fa";
 import { MdOutlineDateRange } from "react-icons/md";
+import dayjs from "dayjs";
 
 const Header = () => {
-  const { todos, setTodos } = useContext(todoContext);
+  const { todos, setTodos, addNewTodo } = useContext(todoContext);
   const [showModal, setShowModal] = useState(false);
   const [time, setTime] = useState("00:00");
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(dayjs());
   const [taskName, setTaskName] = useState("");
-  const [user, setUser] = useState("");
   const [error, setError] = useState("");
+  const dateFormat = "MM/DD/YYYY";
+  const email = getEmail();
   const handleSubmit = (e) => {
     e.preventDefault();
     if (taskName && time) {
       setError("");
+      const data = {
+        email,
+        taskName,
+        date,
+        id: Math.ceil(Math.random() * 100),
+        time,
+      };
+      addNewTodo(data);
+      localStorage.setItem(JSON.stringify(data));
+      setTime("");
+      setDate("");
+      setShowModal(false);
+    } else {
+      setError("Please fill out all feilds!");
     }
-    setTodos();
-    const email = getEmail();
   };
+  console.log(todos);
+
   return (
     <>
       {" "}
@@ -34,34 +49,32 @@ const Header = () => {
           <div className="todo-buttons">
             {" "}
             <NavLink
+              to="/"
+              className={({ isActive }) => (isActive ? "button" : "")}
+            >
+              Home
+            </NavLink>
+            <NavLink
               to="/today"
-              className={({ isActive }) =>
-                isActive ? "button" : "todo-buttons"
-              }
+              className={({ isActive }) => (isActive ? "button" : "")}
             >
               Today
             </NavLink>
             <NavLink
               to="/pending"
-              className={({ isActive }) =>
-                isActive ? "button" : "todo-buttons"
-              }
+              className={({ isActive }) => (isActive ? "button" : "")}
             >
               Pending
             </NavLink>
             <NavLink
               to="/overdue"
-              className={({ isActive }) =>
-                isActive ? "button" : "todo-buttons"
-              }
+              className={({ isActive }) => (isActive ? "button" : "")}
             >
               Overdue
             </NavLink>
             <NavLink
               to="/completed"
-              className={({ isActive }) =>
-                isActive ? "button" : "todo-buttons"
-              }
+              className={({ isActive }) => (isActive ? "button" : "")}
             >
               Completed
             </NavLink>
@@ -80,7 +93,12 @@ const Header = () => {
               {""}Add Task{" "}
             </button>
             {showModal && (
-              <ModalComponent showModal={showModal} setShowModal={setShowModal}>
+              <Modal
+                centered
+                open={showModal}
+                onOk={() => showModal(false)}
+                onCancel={() => setShowModal(false)}
+              >
                 <div>
                   <div>
                     <h3 className="p-2 fs-2">Add your Schedule</h3>
@@ -108,23 +126,20 @@ const Header = () => {
                         Choose a Date
                       </p>
                       <DatePicker
-                        selected={date}
+                        defaultValue={dayjs("10/01/2024", dateFormat)}
+                        format={dateFormat}
                         onChange={(date) => setDate(date)}
-                        popupClassName={"date-picker-dropdown"}
                       />
                     </div>
-                    <div className="time-picker d-flex align-items-center justify-content-center">
+                    <div className="d-flex align-items-center justify-content-center">
                       <p className="modal-input fs-4 m-2">
                         <FaRegClock />
                         Choose a time
                       </p>
-                      <input
-                        type="time"
-                        aria-label="Time"
+                      <TimePicker
+                        use12Hours
+                        format="h:mm a"
                         onChange={setTime}
-                        clearIcon={true}
-                        disableClock={"true"}
-                        setTime={time}
                       />
                     </div>
                     {error && (
@@ -133,7 +148,7 @@ const Header = () => {
                       </div>
                     )}
                     <button
-                      className="mt-4"
+                      className="m-4 add-todo-btn"
                       type="button"
                       onClick={handleSubmit}
                     >
@@ -141,7 +156,7 @@ const Header = () => {
                     </button>
                   </form>
                 </div>
-              </ModalComponent>
+              </Modal>
             )}
           </div>
         </div>

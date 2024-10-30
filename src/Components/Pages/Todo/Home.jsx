@@ -3,9 +3,10 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { CiClock2 } from "react-icons/ci";
 import { FaEdit } from "react-icons/fa";
 import TodosProvider, { todoContext } from "../../../Provider/TodosProvider";
+import dayjs from "dayjs";
 
 const Home = () => {
-  const { todos, setTodos } = useContext(todoContext);
+  const { todos, setTodos, addNewTodo } = useContext(todoContext);
   console.log(todos);
 
   return (
@@ -33,12 +34,13 @@ const Home = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {todos?.map((todo, i) => {
+                    {todos?.map((todo) => {
+                      setTodos;
                       return (
-                        <tr key={i}>
+                        <tr key={todo.id}>
                           <td>{todo.taskName}</td>
-                          <td>{todo.user}</td>
-                          <td>{todo.date}</td>
+                          <td>{todo.email}</td>
+                          <td>{dayjs(todo.date).format("MM-DD-YYYY")}</td>
                           <td className="task-icons d-flex gap-3 fs-3 ">
                             <FaEdit />
                             <CiClock2 />
