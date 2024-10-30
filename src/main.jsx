@@ -8,7 +8,10 @@ import MainLayout from "./Components/Layout/MainLayout.jsx";
 import Verification from "./Components/SharedPages/Verification.jsx";
 import Home from "./Components/Pages/Todo/Home.jsx";
 import ForgotPassword from "./Components/Pages/ForgotPassword.jsx";
-
+import Today from "./Components/TodoContext/FilterTabs/Today.jsx";
+import Pending from "./Components/TodoContext/FilterTabs/Pending.jsx";
+import Overdue from "./Components/TodoContext/FilterTabs/Overdue.jsx";
+import Completed from "./Components/TodoContext/FilterTabs/Completed.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -25,7 +28,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/today",
-        element: <div></div>,
+        element: <Today></Today>,
+      },
+      {
+        path: "/pending",
+        element: <Pending></Pending>,
+      },
+      {
+        path: "/overdue",
+        element: <Overdue></Overdue>,
+      },
+      {
+        path: "/completed",
+        element: <Completed></Completed>,
       },
     ],
   },

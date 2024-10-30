@@ -2,16 +2,12 @@ import { useContext } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
 import { CiClock2 } from "react-icons/ci";
 import { FaEdit } from "react-icons/fa";
-import { todoContext } from "../../../Provider/TodosProvider";
+import TodosProvider, { todoContext } from "../../../Provider/TodosProvider";
 
 const Home = () => {
-  const { todo, setTodo } = useContext(todoContext);
-  // const payLoad = {
-  //   taskName,
-  //   taskAssignerName,
-  //   date: date.format("MM DD YYYY"),
-  //   time: time.format("hh:mm a"),
-  // };
+  const { todos, setTodos } = useContext(todoContext);
+  console.log(todos);
+
   return (
     <>
       <div className="main-todo container">
@@ -19,27 +15,39 @@ const Home = () => {
           <div className="task-rendering-block">
             <div className="task-rendering-inner-block">
               <div>
-                <table>
+                <table className="d-flex flex-column">
                   <thead>
                     <tr>
-                      <th scope="col"></th>
-                      <th scope="col"></th>
-                      <th scope="col"></th>
-                      <th scope="col"></th>
+                      {/* <th scope="col">ID</th> */}
+                      <th scope="col">TaskName</th>
+                      <th scope="col">User</th>
+                      <th scope="col">Time</th>
+                      <th scope="col">
+                        <span className="task-icons d-flex gap-3 fs-3 ">
+                          {" "}
+                          <FaEdit />
+                          <CiClock2 />
+                          <AiOutlineDelete />
+                        </span>
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>TaskName</td>
-                      <td>TaskAssignerName</td>
-                      <td>Date</td>
-                      <td className="task-icons d-flex gap-3 fs-3 ">
-                        <FaEdit />
-                        <CiClock2 />
-                        <AiOutlineDelete />
-                      </td>
-                    </tr>
+                    {todos?.map((todo) => {
+                      newtodo, (key = i);
+                      return (
+                        <tr>
+                          <td>{todo.taskName}</td>
+                          <td>{todo.user}</td>
+                          <td>{todo.date}</td>
+                          <td className="task-icons d-flex gap-3 fs-3 ">
+                            <FaEdit />
+                            <CiClock2 />
+                            <AiOutlineDelete />
+                          </td>
+                        </tr>
+                      );
+                    })}
                   </tbody>
                 </table>
               </div>
