@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../../Styles/Pages/_global-import.scss";
+import { useEffect, useState } from "react";
 import TodosProvider from "../../Provider/TodosProvider";
 import { Navigate, Outlet } from "react-router-dom";
-import Navbar from "../SharedPages/Navbar";
-
+import Header from "../Pages/Todo/Header";
 const MainLayout = () => {
   const [authtoken, setAuthToken] = useState(null);
   const token = localStorage.getItem("token");
@@ -25,17 +26,18 @@ const MainLayout = () => {
 
 
   return (
-    <TodosProvider>
-      {authtoken ?
-
-        <div>
-          <Navbar />
-          <Outlet />
-        </div>
-
-
-        : <Navigate to={"/signin"} />}
-    </TodosProvider>
+    <>
+      <TodosProvider>
+        {authtoken ? (
+          <div>
+            <Header></Header>
+            <Outlet></Outlet>
+          </div>
+        ) : (
+          <Navigate to={"/signin"}></Navigate>
+        )}
+      </TodosProvider>
+    </>
   );
 };
 

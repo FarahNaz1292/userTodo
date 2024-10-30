@@ -1,15 +1,31 @@
 import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 
 const ForgotPassword = () => {
+  const [email, setEmail] = useState("");
+  console.log(email);
+
+  const handleOTP = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        "https://staging-be-ecom.techserve4u.com/api/user/forgotPassword",
+        email
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
-      <div className="page-background">
-        <div className="d-flex align-items-center justify-content-center">
+      <div className="password-page-background">
+        <div className="d-flex flex-column align-items-center justify-content-center">
           <div className="password-box">
             <div className="form-content m-5">
-              <h1>Forgot Password</h1>
+              <h3>Forgot Password</h3>
               <h4>
                 Enter your account email address. We'll send a confirmation
                 email to <br />
@@ -17,14 +33,21 @@ const ForgotPassword = () => {
               </h4>
 
               <div className="d-flex flex-column align-items-center justify-content-center">
-                <div className="input-group">
-                  <FontAwesomeIcon
-                    className="symbols"
-                    icon={faEnvelope}
-                  ></FontAwesomeIcon>
-                  <input type="email" required className="third-party-btn" />
-                  <label for="email">Email Address</label>
-                </div>
+                <form onSubmit={handleOTP}>
+                  <div className="input-group">
+                    <FontAwesomeIcon
+                      className="symbols"
+                      icon={faEnvelope}
+                    ></FontAwesomeIcon>
+                    <input
+                      type="email"
+                      required
+                      className="third-party-btn"
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                    <label htmlFor="email">Email Address</label>
+                  </div>
+                </form>
                 <button className="common-btn text-nowrap fs-5 text-center">
                   Get OTP{" "}
                 </button>

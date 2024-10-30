@@ -1,0 +1,90 @@
+.main-todo {
+  .header-todo {
+    background-image: url("../../assets/images/todo\ image.png");
+    background-repeat: no-repeat;
+    width: 100%;
+    object-fit: cover;
+    height: 35vh;
+    border-radius: 20px;
+
+    h2 {
+      color: #ffff;
+      font-size: 70px;
+      font-weight: 600;
+      text-align: center;
+      padding-top: 80px;
+    }
+  }
+
+  .btn-segement {
+    width: 50%;
+    height: 60px;
+    padding: 35px;
+    margin-top: 20px;
+    background-color: rgba(57, 66, 241, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+
+    .todo-buttons {
+      gap: 10px;
+      display: flex;
+      justify-content: space-between;
+
+      .active {
+        background-color: white !important;
+      }
+
+      .button {
+        width: 150px;
+        height: 50px;
+        border-radius: 10px;
+        color: rgba(57, 66, 241, 1);
+        font-size: 20px;
+        font-weight: bold;
+        border-color: rgba(57, 66, 241, 0.4);
+        background-color: rgba(182, 185, 242, 0.4);
+
+        &:hover {
+          background-color: rgba(57, 66, 241, 1);
+          color: #ffff;
+        }
+      }
+    }
+  }
+
+  .add-todo-btn {
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    width: 120px;
+    border-style: none;
+    color: #ffff;
+    background-color: rgba(57, 66, 241, 1);
+    font-weight: 500;
+  }
+
+  .task-rendering-block {
+    width: 100%;
+    height: 50vh;
+    margin-top: 100px;
+    -webkit-box-shadow: 0px -4px 17px 8px rgba(240, 237, 240, 1);
+    -moz-box-shadow: 0px -4px 17px 8px rgba(240, 237, 240, 1);
+    box-shadow: 0px -4px 17px 8px rgba(240, 237, 240, 1);
+
+    .task-rendering-inner-block {
+      table {
+        tr {
+          padding: 20px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 200px;
+        }
+      }
+    }
+  }
+}

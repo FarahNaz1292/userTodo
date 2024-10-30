@@ -2,14 +2,32 @@ import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Divider } from "@mui/material";
+import axios from "axios";
+import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { IoLogoApple } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
 
 const SignIn = () => {
-
-  const Navigate = useNavigate()
-
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const handleSubmit = async (e) => {
+    e.prevantDefault();
+    try {
+      const response = await axios.post(
+        "https://staging-be-ecom.techserve4u.com/api/user/signin",
+        { email, password }
+      );
+      const token = response?.data?.token;
+      if (token) {
+        localStorage.setItem("user-token", token);
+      }
+    } catch (error) {
+      alert("error Login");
+      console.log(error);
+    }
+  };
   return (
     <>
       <div>
@@ -26,22 +44,34 @@ const SignIn = () => {
                   <IoLogoApple size={25} /> Continue with Apple
                 </button>
                 <Divider className="divider-text">Or Sign In With</Divider>
-                <div className="input-group">
-                  <FontAwesomeIcon
-                    className="symbols"
-                    icon={faEnvelope}
-                  ></FontAwesomeIcon>
-                  <input type="email" required className="third-party-btn " />
-                  <label htmlFor="email">Email Address</label>
-                </div>
-                <div className="input-group">
-                  <FontAwesomeIcon
-                    className="symbols"
-                    icon={faLock}
-                  ></FontAwesomeIcon>
-                  <input type="password" required className="third-party-btn" />
-                  <label htmlFor="password">Password</label>
-                </div>
+                <form onSubmit={handleSubmit}>
+                  <div className="input-group">
+                    <FontAwesomeIcon
+                      className="symbols"
+                      icon={faEnvelope}
+                    ></FontAwesomeIcon>
+                    <input
+                      type="email"
+                      required
+                      className="third-party-btn "
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                    <label htmlFor="email">Email Address</label>
+                  </div>
+                  <div className="input-group">
+                    <FontAwesomeIcon
+                      className="symbols"
+                      icon={faLock}
+                    ></FontAwesomeIcon>
+                    <input
+                      type="password"
+                      required
+                      className="third-party-btn"
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <label htmlFor="password">Password</label>
+                  </div>
+                </form>
                 <div className="d-flex gap-2">
                   <input type="checkbox" name="check" className="mb-3" />
                   <p>Keep singed in to stay connected</p>
@@ -49,19 +79,19 @@ const SignIn = () => {
                 <button className="common-btn">Sign in </button>
                 <p className="text-center">
                   {" "}
-                  Don't have an account? <button onClick={() => Navigate('/signup')}>Sign Up</button>
+                  Don&apos;t have an account? <button onClick={() => navigate('/signup')}>Sign Up</button>
                 </p>
-                <hr className="m-5" />
-                <a href="./forgotPassword" className="text-center">
+                <hr />
+                <Link to="/forgotPassword" className="text-center">
                   Forgot Password
-                </a>
+                </Link>
               </div>
             </div>
           </div>
           <p className="terms-text">
-            By Clicking "Sign In", you agree to our{" "}
+            By Clicking &quot;Sign In&quot;, you agree to our{" "}
             <a href="">
-              "Terms of <br /> Use and Privacy Policy"
+              &quot;Terms of <br /> Use and Privacy Policy&quot;
             </a>
           </p>
         </div>

@@ -1,14 +1,13 @@
 import { createRoot } from "react-dom/client";
-
+// import * as React from "react";
 import { createBrowserRouter, RouterProvider, Link } from "react-router-dom";
 import SignIn from "./Components/Pages/SignIn.jsx";
 import SignUp from "./Components/Pages/SignUp.jsx";
 import TodosProvider from "./Provider/TodosProvider.jsx";
 import MainLayout from "./Components/Layout/MainLayout.jsx";
-import App from "./App.jsx";
-import ForgotPassword from "./Components/Pages/ForgotPassword.jsx";
 import Verification from "./Components/SharedPages/Verification.jsx";
 import Home from "./Components/Pages/Todo/Home.jsx";
+import ForgotPassword from "./Components/Pages/ForgotPassword.jsx";
 
 const router = createBrowserRouter([
   {
@@ -22,15 +21,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />,
+        element: <Home></Home>,
       },
       {
-        path: '/today',
-        element: <div></div>
-      },
-      {
-        path: '/weekly',
-        element: <div></div>
+        path: "/today",
+        element: <div></div>,
       },
     ],
   },
@@ -47,7 +42,7 @@ const router = createBrowserRouter([
     element: <Verification></Verification>,
   },
   {
-    path: "/signin",
+    path: "signin",
     element: (
       <TodosProvider>
         <SignIn></SignIn>
@@ -55,18 +50,18 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/signup",
+    path: "signup",
     element: (
       <TodosProvider>
-        <SignIn></SignIn>
+        <SignUp></SignUp>
       </TodosProvider>
     ),
   },
   {
-    path: "/forgot-password",
+    path: "forgotpassword",
     element: (
       <TodosProvider>
-        <SignIn></SignIn>
+        <ForgotPassword></ForgotPassword>
       </TodosProvider>
     ),
   },
