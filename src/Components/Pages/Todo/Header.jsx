@@ -8,7 +8,7 @@ import { MdOutlineDateRange } from "react-icons/md";
 import dayjs from "dayjs";
 
 const Header = () => {
-  const { todos, setTodos, addNewTodo } = useContext(todoContext);
+  const { addNewTodo } = useContext(todoContext);
   const [showModal, setShowModal] = useState(false);
   const [time, setTime] = useState("00:00");
   const [date, setDate] = useState(dayjs());
@@ -27,8 +27,8 @@ const Header = () => {
         id: Math.ceil(Math.random() * 100),
         time,
       };
+      console.log(data);
       addNewTodo(data);
-      localStorage.setItem(JSON.stringify(data));
       setTime("");
       setDate("");
       setShowModal(false);
@@ -36,7 +36,6 @@ const Header = () => {
       setError("Please fill out all feilds!");
     }
   };
-  console.log(todos);
 
   return (
     <>
@@ -50,25 +49,33 @@ const Header = () => {
             {" "}
             <NavLink
               to="/"
-              className={({ isActive }) => (isActive ? "button" : "")}
+              className={({ isActive }) =>
+                isActive ? "button" : "button-inActive"
+              }
             >
               Home
             </NavLink>
             <NavLink
               to="/today"
-              className={({ isActive }) => (isActive ? "button" : "")}
+              className={({ isActive }) =>
+                isActive ? "button" : "button-inActive"
+              }
             >
               Today
             </NavLink>
             <NavLink
               to="/pending"
-              className={({ isActive }) => (isActive ? "button" : "")}
+              className={({ isActive }) =>
+                isActive ? "button" : "button-inActive"
+              }
             >
               Pending
             </NavLink>
             <NavLink
               to="/overdue"
-              className={({ isActive }) => (isActive ? "button" : "")}
+              className={({ isActive }) =>
+                isActive ? "button" : "button-inActive"
+              }
             >
               Overdue
             </NavLink>

@@ -10,18 +10,26 @@ import { Link, useNavigate } from "react-router-dom";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
+
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
-    e.prevantDefault();
+    e.preventDefault();
+    console.log(email, password);
     try {
       const response = await axios.post(
         "https://staging-be-ecom.techserve4u.com/api/user/signin",
         { email, password }
       );
+      console.log(response);
       const token = response?.data?.token;
+      console.log(token);
+
       if (token) {
         localStorage.setItem("user-token", token);
+
+        navigate("/");
       }
     } catch (error) {
       alert("error Login");
@@ -71,12 +79,14 @@ const SignIn = () => {
                     />
                     <label htmlFor="password">Password</label>
                   </div>
+                  <button className="common-btn" type="submit">
+                    Sign in{" "}
+                  </button>
                 </form>
                 <div className="d-flex gap-2">
                   <input type="checkbox" name="check" className="mb-3" />
                   <p>Keep singed in to stay connected</p>
                 </div>
-                <button className="common-btn">Sign in </button>
                 <p className="text-center">
                   {" "}
                   Don't have an account? <Link to="/signup">Sign Up</Link>

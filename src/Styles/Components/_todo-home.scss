@@ -44,17 +44,22 @@
         padding: 10px;
         text-align: center;
         border-radius: 5px;
-        border-color: black;
         color: white;
         font-weight: bold;
         line-height: 25px;
         text-decoration: none;
+        border: 2px solid rgba(57, 66, 241, 0.4);
       }
       .button {
+        background-color: rgba(57, 66, 241, 1);
+
         &:hover {
           color: white;
         }
       }
+      // .button-inActive {
+      //   border: 2px solid rgba(57, 66, 241, 0.4);
+      // }
     }
   }
   .add-todo-btn {

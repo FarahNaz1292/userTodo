@@ -2,11 +2,12 @@ import { useContext } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
 import { CiClock2 } from "react-icons/ci";
 import { FaEdit } from "react-icons/fa";
-import TodosProvider, { todoContext } from "../../../Provider/TodosProvider";
+import { todoContext } from "../../../Provider/TodosProvider";
+import nodata from "../../../assets/images/noData.png";
 import dayjs from "dayjs";
 
 const Home = () => {
-  const { todos, setTodos, addNewTodo } = useContext(todoContext);
+  const { todos, deleteTodos } = useContext(todoContext);
   console.log(todos);
 
   return (
@@ -18,37 +19,52 @@ const Home = () => {
               <div>
                 <table className="d-flex flex-column">
                   <thead>
-                    <tr>
-                      {/* <th scope="col">ID</th> */}
-                      <th scope="col">TaskName</th>
-                      <th scope="col">User</th>
-                      <th scope="col">Time</th>
-                      <th scope="col">
-                        <span className="task-icons d-flex gap-3 fs-3 ">
-                          {" "}
-                          <FaEdit />
-                          <CiClock2 />
-                          <AiOutlineDelete />
-                        </span>
-                      </th>
-                    </tr>
+                    {todos?.length > 0 ? (
+                      <tr>
+                        {/* <th scope="col">ID</th> */}
+                        <th scope="col">TaskName</th>
+                        <th scope="col">User</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">
+                          <span className="task-icons d-flex gap-3 fs-3 ">
+                            {" "}
+                            <button>
+                              <FaEdit />
+                            </button>
+                            <button>
+                              <AiOutlineDelete />
+                            </button>
+                          </span>
+                        </th>
+                      </tr>
+                    ) : (
+                      ""
+                    )}
                   </thead>
                   <tbody>
-                    {todos?.map((todo) => {
-                      setTodos;
-                      return (
-                        <tr key={todo.id}>
-                          <td>{todo.taskName}</td>
-                          <td>{todo.email}</td>
-                          <td>{dayjs(todo.date).format("MM-DD-YYYY")}</td>
-                          <td className="task-icons d-flex gap-3 fs-3 ">
-                            <FaEdit />
-                            <CiClock2 />
-                            <AiOutlineDelete />
-                          </td>
-                        </tr>
-                      );
-                    })}
+                    {todos?.length > 0 ? (
+                      todos?.map((todo) => {
+                        return (
+                          <tr key={todo.id}>
+                            <td>{todo.taskName}</td>
+                            <td>{todo.email}</td>
+                            <td>{dayjs(todo.date).format("MM-DD-YYYY")}</td>
+                            <td className="task-icons d-flex gap-3 fs-3">
+                              <button>
+                                <FaEdit />
+                              </button>
+                              <button onClick={() => deleteTodos(todo.id)}>
+                                <AiOutlineDelete />
+                              </button>
+                            </td>
+                          </tr>
+                        );
+                      })
+                    ) : (
+                      <div className="d-flex align-items-center justify-content-center">
+                        <img src={nodata} alt="" />
+                      </div>
+                    )}
                   </tbody>
                 </table>
               </div>

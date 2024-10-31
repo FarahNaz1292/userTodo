@@ -4,17 +4,32 @@ export const todoContext = createContext();
 
 const TodosProvider = ({ children }) => {
   const [todos, setTodos] = useState([]);
-  const [user, setUser] = useState(" ");
   useEffect(() => {
-    const localTodos = localStorage.getItem(todos, JSON.stringify(todos));
-  });
+    const localTodos = JSON.parse(localStorage.getItem("todos") || "[]");
+    console.log(localTodos);
+
+    if (localTodos) {
+      setTodos(localTodos); // Set retrieved todos to state
+    }
+  }, []);
+  console.log(todos);
 
   const addNewTodo = (todo) => {
-    const newTodo = [...todos, todo];
+    console.log(todo);
+
+    const newTodo = [...(todos || []), todo];
+    console.log(newTodo);
+
     setTodos(newTodo);
     localStorage.setItem("todos", JSON.stringify(newTodo));
   };
-  const value = { setTodos, todos, addNewTodo };
+  const deleteTodos = (id) => {
+    const updateToDos = todos.filter((todo) => todo.id !== id);
+    setTodos(updateToDos);
+    localStorage.setItem("todos", JSON.stringify(updateToDos));
+  };
+
+  const value = { setTodos, todos, addNewTodo, deleteTodos };
 
   return (
     <>
@@ -23,7 +38,7 @@ const TodosProvider = ({ children }) => {
   );
 };
 export const getEmail = () => {
-  const jwtToken = localStorage.getItem("token");
+  const jwtToken = localStorage.getItem("user-token");
   if (jwtToken) {
     const bearToken = jwtToken.split(" ");
     const decode = jwtDecode(bearToken[1]);

@@ -7,7 +7,9 @@ import Header from "../Pages/Todo/Header";
 import Loading from "../Loading";
 const MainLayout = () => {
   const [authtoken, setAuthToken] = useState(null);
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("user-token");
+  console.log(token);
+
   useEffect(() => {
     console.log("token", token);
 

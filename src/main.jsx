@@ -18,7 +18,7 @@ const router = createBrowserRouter([
     element: <MainLayout></MainLayout>,
     errorElement: (
       <div>
-        Oops Wrong way, go back to <Link to={"verification"}>signin</Link>
+        Oops Wrong way, go back to <Link to={"/"}>signin</Link>
       </div>
     ),
     children: [
