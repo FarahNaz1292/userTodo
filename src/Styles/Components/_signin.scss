@@ -103,45 +103,79 @@
         text-align: center;
       }
 
-      .input-group {
-        position: relative;
-        padding: 20px;
-        border-radius: 5px;
-        .symbols {
-          position: absolute;
-          top: 40%;
-          left: 5%;
-          padding-left: 5px;
-        }
+      // .input-group {
+      //   position: relative;
+      //   padding: 20px;
+      //   border-radius: 5px;
+      //   .symbols {
+      //     position: absolute;
+      //     top: 40%;
+      //     left: 5%;
+      //     padding-left: 5px;
+      //   }
 
-        input {
-          font-size: 26px;
-          outline: none;
-          padding: 0 10px;
-          padding-left: 40px;
-          &:focus ~ label,
-          &:valid ~ label {
-            top: 20px;
-            font-size: 15px;
-            cursor: text;
-          }
-        }
-        label {
-          position: absolute;
-          top: 50%;
-          left: 15%;
-          transform: translateY(-50%);
-          font-size: 16px;
-          color: #5c5958;
-          pointer-events: none;
-          transition: 0.5s;
-        }
-      }
+      //   input {
+      //     font-size: 26px;
+      //     outline: none;
+      //     padding: 0 10px;
+      //     padding-left: 40px;
+      //     &:focus ~ label,
+      //     &:valid ~ label {
+      //       top: 20px;
+      //       font-size: 15px;
+      //       cursor: text;
+      //     }
+      //   }
+      //   label {
+      //     position: absolute;
+      //     top: 50%;
+      //     left: 15%;
+      //     transform: translateY(-50%);
+      //     font-size: 16px;
+      //     color: #5c5958;
+      //     pointer-events: none;
+      //     transition: 0.5s;
+      //   }
+      // }
     }
   }
   .terms-text {
     margin-top: 20px;
     margin-left: 15px;
     text-align: center;
+  }
+}
+.input-group {
+  position: relative;
+  padding: 20px;
+  border-radius: 5px;
+  .symbols {
+    position: absolute;
+    top: 40%;
+    left: 5%;
+    padding-left: 5px;
+  }
+
+  input {
+    font-size: 26px;
+    outline: none;
+    padding: 0 10px;
+    padding-left: 40px;
+    &:focus ~ label,
+    &:valid ~ label {
+      top: 20px;
+      font-size: 15px;
+      cursor: text;
+    }
+  }
+  label {
+    position: absolute;
+    top: 50%;
+    left: 15%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #5c5958;
+    pointer-events: none;
+    transition: 0.5s;
   }
 }

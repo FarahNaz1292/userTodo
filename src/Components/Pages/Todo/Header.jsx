@@ -26,6 +26,7 @@ const Header = () => {
         date,
         id: Math.ceil(Math.random() * 100),
         time,
+        isCompleted: false,
       };
       console.log(data);
       addNewTodo(data);
@@ -103,7 +104,8 @@ const Header = () => {
               <Modal
                 centered
                 open={showModal}
-                onOk={() => showModal(false)}
+                onOk={handleSubmit}
+                okText={"Add your Schediule"}
                 onCancel={() => setShowModal(false)}
               >
                 <div>
@@ -154,13 +156,6 @@ const Header = () => {
                         <p>{error}</p>
                       </div>
                     )}
-                    <button
-                      className="m-4 add-todo-btn"
-                      type="button"
-                      onClick={handleSubmit}
-                    >
-                      Add Your Schedule
-                    </button>
                   </form>
                 </div>
               </Modal>

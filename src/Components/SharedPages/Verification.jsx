@@ -2,6 +2,7 @@ import { Flex, Input } from "antd";
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getEmail } from "../../Provider/TodosProvider";
 
 const Verification = ({ email }) => {
   const [otp, setOtp] = useState("");
@@ -39,7 +40,7 @@ const Verification = ({ email }) => {
               <h3>Verification</h3>
               <h4>
                 Enter the 6-digit code that we sent to <br />
-                <span> s********0@gmail.com</span>
+                <span> {getEmail}</span>
               </h4>
               <Flex gap="middle" align="flex-start" vertical className="m-2">
                 <Input.OTP length={6} onChange={(value) => setOtp(value)} />

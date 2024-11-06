@@ -3,6 +3,7 @@ import { jwtDecode } from "jwt-decode";
 export const todoContext = createContext();
 
 const TodosProvider = ({ children }) => {
+  const [editTodos, setEditTodos] = useState("");
   const [todos, setTodos] = useState([]);
   useEffect(() => {
     const localTodos = JSON.parse(localStorage.getItem("todos") || "[]");
@@ -28,8 +29,29 @@ const TodosProvider = ({ children }) => {
     setTodos(updateToDos);
     localStorage.setItem("todos", JSON.stringify(updateToDos));
   };
+  const editTodo = (id, updatedData) => {
+    const updateEditTodos = todos?.map((todo) =>
+      todo.id === id
+        ? {
+            ...todo,
+            ...updatedData,
+          }
+        : todo
+    );
+    setTodos(updateEditTodos);
+    localStorage.setItem("todos", JSON.stringify(updateEditTodos));
+  };
 
-  const value = { setTodos, todos, addNewTodo, deleteTodos };
+  const value = {
+    setTodos,
+    todos,
+    addNewTodo,
+    deleteTodos,
+    editTodo,
+    editTodos,
+    setEditTodos,
+    getEmail,
+  };
 
   return (
     <>

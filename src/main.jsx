@@ -12,6 +12,7 @@ import Today from "./Components/TodoContext/FilterTabs/Today.jsx";
 import Pending from "./Components/TodoContext/FilterTabs/Pending.jsx";
 import Overdue from "./Components/TodoContext/FilterTabs/Overdue.jsx";
 import Completed from "./Components/TodoContext/FilterTabs/Completed.jsx";
+import ResetPassword from "./Components/Pages/ResetPassword.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
