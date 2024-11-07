@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
 import { CiCirclePlus } from "react-icons/ci";
 import { getEmail, todoContext } from "../../../Provider/TodosProvider";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { DatePicker, Modal, TimePicker } from "antd";
-import { FaRegClock } from "react-icons/fa";
+import { FaRegClock, FaSignOutAlt } from "react-icons/fa";
 import { MdOutlineDateRange } from "react-icons/md";
 import dayjs from "dayjs";
 
@@ -15,6 +15,7 @@ const Header = () => {
   const [taskName, setTaskName] = useState("");
   const [error, setError] = useState("");
   const dateFormat = "MM/DD/YYYY";
+  const navigate = useNavigate();
   const email = getEmail();
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -37,6 +38,10 @@ const Header = () => {
       setError("Please fill out all feilds!");
     }
   };
+  const handleClick = () => {
+    localStorage.setItem("user-token", "");
+    navigate("/signin");
+  };
 
   return (
     <>
@@ -45,47 +50,59 @@ const Header = () => {
         <div className="header-todo">
           <h2>Todo App</h2>
         </div>
-        <div className="btn-segement">
-          <div className="todo-buttons">
-            {" "}
-            <NavLink
-              to="/"
-              className={({ isActive }) =>
-                isActive ? "button" : "button-inActive"
-              }
+        <div className="d-flex align-items-center justify-content-between">
+          <div className="btn-segement">
+            <div className="todo-buttons">
+              {" "}
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  isActive ? "button" : "button-inActive"
+                }
+              >
+                Home
+              </NavLink>
+              <NavLink
+                to="/today"
+                className={({ isActive }) =>
+                  isActive ? "button" : "button-inActive"
+                }
+              >
+                Today
+              </NavLink>
+              <NavLink
+                to="/pending"
+                className={({ isActive }) =>
+                  isActive ? "button" : "button-inActive"
+                }
+              >
+                Pending
+              </NavLink>
+              <NavLink
+                to="/overdue"
+                className={({ isActive }) =>
+                  isActive ? "button" : "button-inActive"
+                }
+              >
+                Overdue
+              </NavLink>
+              <NavLink
+                to="/completed"
+                className={({ isActive }) => (isActive ? "button" : "")}
+              >
+                Completed
+              </NavLink>
+            </div>
+          </div>
+          <div>
+            <button
+              onClick={handleClick}
+              className="btn btn-primary mx-3 border-0"
             >
-              Home
-            </NavLink>
-            <NavLink
-              to="/today"
-              className={({ isActive }) =>
-                isActive ? "button" : "button-inActive"
-              }
-            >
-              Today
-            </NavLink>
-            <NavLink
-              to="/pending"
-              className={({ isActive }) =>
-                isActive ? "button" : "button-inActive"
-              }
-            >
-              Pending
-            </NavLink>
-            <NavLink
-              to="/overdue"
-              className={({ isActive }) =>
-                isActive ? "button" : "button-inActive"
-              }
-            >
-              Overdue
-            </NavLink>
-            <NavLink
-              to="/completed"
-              className={({ isActive }) => (isActive ? "button" : "")}
-            >
-              Completed
-            </NavLink>
+              {" "}
+              <FaSignOutAlt className="fs-4" />
+              Sign out
+            </button>
           </div>
         </div>
         <div className="d-flex flex-column">

@@ -1,15 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { todoContext } from "../../Provider/TodosProvider";
 
 const ResetPassword = () => {
   const location = useLocation();
   const email = new URLSearchParams(location.search).get("email");
 
-  const navigateHome = useNavigate();
+  const { navigate } = useContext(todoContext);
   const [confirmPassword, setConfirmPassword] = useState("");
   const [resetPassword, setResetPassword] = useState("");
   console.log(resetPassword);
@@ -27,7 +28,7 @@ const ResetPassword = () => {
         { email, otp, password: resetPassword }
       );
       if (res.data.success) {
-        navigateHome("/signin");
+        navigate("/signin");
       }
       console.log(res);
     } catch (error) {

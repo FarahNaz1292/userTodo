@@ -6,8 +6,8 @@ import { FaEdit } from "react-icons/fa";
 import { AiOutlineDelete } from "react-icons/ai";
 
 const TodoTable = (props) => {
-  const { todos } = useContext(todoContext);
-  const { handleEdit, deleteTodos } = useContext(todoContext);
+  const { todos, handleEdit, deleteTodos } = useContext(todoContext);
+
   const onChange = (e, todo) => {
     console.log(`checked = ${e.target.checked}`);
     const isChecked = e.target.checked;

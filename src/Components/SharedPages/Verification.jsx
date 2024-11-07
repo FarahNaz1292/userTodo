@@ -34,7 +34,7 @@ const Verification = ({ email }) => {
   return (
     <>
       <div className="page-background">
-        <div className="d-flex align-items-center justify-content-center">
+        <div className="d-flex align-items-center justify-content-center form-content">
           <div className="otp-box">
             <div className="form-content m-5">
               <h3>Verification</h3>

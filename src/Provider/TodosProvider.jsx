@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 export const todoContext = createContext();
 
 const TodosProvider = ({ children }) => {
@@ -41,6 +42,7 @@ const TodosProvider = ({ children }) => {
     setTodos(updateEditTodos);
     localStorage.setItem("todos", JSON.stringify(updateEditTodos));
   };
+  const navigate = useNavigate();
 
   const value = {
     setTodos,
@@ -51,6 +53,7 @@ const TodosProvider = ({ children }) => {
     editTodos,
     setEditTodos,
     getEmail,
+    navigate,
   };
 
   return (
