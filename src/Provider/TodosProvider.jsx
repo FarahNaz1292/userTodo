@@ -71,7 +71,6 @@ export const getEmail = () => {
   } else {
     return " ";
   }
-  console.log(decode);
 };
 
 export default TodosProvider;
