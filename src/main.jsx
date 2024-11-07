@@ -73,6 +73,14 @@ const router = createBrowserRouter([
       </TodosProvider>
     ),
   },
+  {
+    path: "resetpassword",
+    element: (
+      <TodosProvider>
+        <ResetPassword></ResetPassword>
+      </TodosProvider>
+    ),
+  },
 ]);
 
 createRoot(document.getElementById("root")).render(

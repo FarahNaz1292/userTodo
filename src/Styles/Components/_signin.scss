@@ -8,6 +8,7 @@
   height: 100%;
   position: relative;
   overflow: hidden;
+
   &::before {
     content: "";
     width: 654px;
@@ -36,10 +37,17 @@
       rgb(249, 242, 253, 1) 100%,
       rgba(251, 249, 254, 1) 100%
     );
+    .page-content {
+      height: 100vh;
+      overflow: auto;
+      z-index: 999 !important;
+      padding: 60px 0;
+      position: relative;
+    }
   }
   .form-box {
     width: 700px;
-    height: 40vh;
+    min-height: 40vh;
     margin-top: 100px;
     -webkit-box-shadow: 0px -4px 17px 8px rgba(240, 237, 240, 1);
     -moz-box-shadow: 0px -4px 17px 8px rgba(240, 237, 240, 1);
@@ -68,7 +76,7 @@
       }
 
       .third-party-btn {
-        width: 518px;
+        width: 100%;
         height: 45px;
         gap: 0px;
         border-radius: 6px;
@@ -102,41 +110,6 @@
         margin-left: 15px;
         text-align: center;
       }
-
-      // .input-group {
-      //   position: relative;
-      //   padding: 20px;
-      //   border-radius: 5px;
-      //   .symbols {
-      //     position: absolute;
-      //     top: 40%;
-      //     left: 5%;
-      //     padding-left: 5px;
-      //   }
-
-      //   input {
-      //     font-size: 26px;
-      //     outline: none;
-      //     padding: 0 10px;
-      //     padding-left: 40px;
-      //     &:focus ~ label,
-      //     &:valid ~ label {
-      //       top: 20px;
-      //       font-size: 15px;
-      //       cursor: text;
-      //     }
-      //   }
-      //   label {
-      //     position: absolute;
-      //     top: 50%;
-      //     left: 15%;
-      //     transform: translateY(-50%);
-      //     font-size: 16px;
-      //     color: #5c5958;
-      //     pointer-events: none;
-      //     transition: 0.5s;
-      //   }
-      // }
     }
   }
   .terms-text {
@@ -147,17 +120,17 @@
 }
 .input-group {
   position: relative;
-  padding: 20px;
+  padding: 20px 0;
   border-radius: 5px;
   .symbols {
     position: absolute;
     top: 40%;
-    left: 5%;
+    left: 2%;
     padding-left: 5px;
   }
 
   input {
-    font-size: 26px;
+    font-size: 18px;
     outline: none;
     padding: 0 10px;
     padding-left: 40px;

@@ -80,7 +80,7 @@ const Home = () => {
                           <tr key={todo.id}>
                             <td>{todo.taskName}</td>
                             <td>{todo.email}</td>
-                            <td>{todo.date} </td>
+                            <td>{dayjs(todo.date).format("MM/DD/YYYY")} </td>
                             <td className="task-icons d-flex gap-3 fs-3">
                               <button
                                 onClick={() => {

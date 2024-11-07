@@ -3,10 +3,11 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
-const ResetPassword = ({ email }) => {
-  console.log(email);
+const ResetPassword = () => {
+  const location = useLocation();
+  const email = new URLSearchParams(location.search).get("email");
 
   const navigateHome = useNavigate();
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -36,12 +37,15 @@ const ResetPassword = ({ email }) => {
   };
   return (
     <>
-      <div className="password-page-background">
-        <div className="d-flex flex-column align-items-center justify-content-center">
-          <div className="password-box">
+      <div className="page-background">
+        <div className="d-flex flex-column align-items-center justify-content-center page-content">
+          <div className="form-box">
             <div className="form-content m-5">
               <h3>Reset Password</h3>
-              <h4>Setting up Password for {email}</h4>
+              <h4>
+                Setting up Password for{" "}
+                <span className="fw-bold text-black fs-6">{email}</span>
+              </h4>
 
               <div className="d-flex flex-column align-items-center justify-content-center">
                 <form onSubmit={handleSubmitPassword}>
@@ -84,7 +88,7 @@ const ResetPassword = ({ email }) => {
                     />
                     <label htmlFor="password"> Confirm Password</label>
                   </div>
-                  <span>Must be at least 8 characters long</span>
+                  <p>Must be at least 8 characters long</p>
                   <button
                     type="submit"
                     className="common-btn text-nowrap fs-5 text-center"

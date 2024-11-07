@@ -19,7 +19,7 @@ const Today = () => {
         )
       );
     }
-  }, [todos, todayTodo]);
+  }, [todos]);
   console.log(todayTodo);
 
   return (
