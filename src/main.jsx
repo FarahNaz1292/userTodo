@@ -1,5 +1,7 @@
 import { createRoot } from "react-dom/client";
 // import * as React from "react";
+import '@mantine/core/styles.css';
+import '@mantine/dates/styles.css';
 import { createBrowserRouter, RouterProvider, Link } from "react-router-dom";
 import SignIn from "./Components/Pages/SignIn.jsx";
 import SignUp from "./Components/Pages/SignUp.jsx";
@@ -13,6 +15,13 @@ import Pending from "./Components/TodoContext/FilterTabs/Pending.jsx";
 import Overdue from "./Components/TodoContext/FilterTabs/Overdue.jsx";
 import Completed from "./Components/TodoContext/FilterTabs/Completed.jsx";
 import ResetPassword from "./Components/Pages/ResetPassword.jsx";
+import { createTheme, MantineProvider } from '@mantine/core';
+
+const theme = createTheme({
+  /** Put your mantine theme override here */
+});
+
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -92,5 +101,7 @@ const router = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById("root")).render(
-  <RouterProvider router={router} />
+  <MantineProvider theme={theme}>
+    <RouterProvider router={router} />
+  </MantineProvider>
 );

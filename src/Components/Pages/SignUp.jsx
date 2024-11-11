@@ -1,13 +1,13 @@
 import { faEnvelope, faUser } from "@fortawesome/free-regular-svg-icons";
 import { faLock, faPhone } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Divider } from "@mui/material";
 import axios from "axios";
 import React, { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { IoLogoApple } from "react-icons/io";
 import { Link } from "react-router-dom";
 import Verification from "../SharedPages/Verification";
+
 
 const SignUp = () => {
   // const location = useLocation();

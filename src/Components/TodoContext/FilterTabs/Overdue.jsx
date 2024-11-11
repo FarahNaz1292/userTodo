@@ -18,7 +18,7 @@ const Overdue = () => {
         )
       );
     }
-  }, [todos, overdue]);
+  }, [todos]);
 
   return (
     <>

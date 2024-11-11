@@ -1,4 +1,4 @@
-import { Flex, Input } from "antd";
+import { Input } from "@mantine/core";
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -42,9 +42,9 @@ const Verification = ({ email }) => {
                 Enter the 6-digit code that we sent to <br />
                 <span> {getEmail}</span>
               </h4>
-              <Flex gap="middle" align="flex-start" vertical className="m-2">
-                <Input.OTP length={6} onChange={(value) => setOtp(value)} />
-              </Flex>
+              {/* <Flex gap="middle" align="flex-start" vertical className="m-2">
+              </Flex> */}
+              <Input.OTP length={6} onChange={(value) => setOtp(value)} />
               <button className="otp-btn" onClick={handleOtp}>
                 Submit
               </button>

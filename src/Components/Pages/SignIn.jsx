@@ -1,7 +1,7 @@
 import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Divider } from "@mui/material";
+import { Divider } from "@mantine/core";
 import axios from "axios";
 import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";

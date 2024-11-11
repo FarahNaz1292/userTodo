@@ -8,7 +8,7 @@ const Pending = () => {
   const { todos } = useContext(todoContext);
   useEffect(() => {
     setPendingTodo(todos.filter((pending) => pending.isCompleted === false));
-  }, [todos, pendingTodo]);
+  }, [todos]);
   return (
     <>
       <div>

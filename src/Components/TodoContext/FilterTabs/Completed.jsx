@@ -8,7 +8,7 @@ const Completed = () => {
   const [completedTodo, setCompletedTodo] = useState([]);
   useEffect(() => {
     setCompletedTodo(todos.filter((schedule) => schedule.isCompleted === true));
-  }, [todos, completedTodo]);
+  }, [todos]);
   console.log(completedTodo);
 
   return (
