@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import TodosProvider from "../../Provider/TodosProvider";
 import { Navigate, Outlet } from "react-router-dom";
 import Header from "../Pages/Todo/Header";
+import Loading from "../Loading";
 const MainLayout = () => {
   const [authtoken, setAuthToken] = useState(null);
   const token = localStorage.getItem("token");
@@ -18,7 +19,11 @@ const MainLayout = () => {
   }, [token]);
   console.log(authtoken);
   if (authtoken === null) {
-    return <div>Loading Animation</div>;
+    return (
+      <div>
+        <Loading></Loading>
+      </div>
+    );
   }
 
 

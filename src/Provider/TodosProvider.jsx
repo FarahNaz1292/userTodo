@@ -1,35 +1,42 @@
 import { createContext, useEffect, useState } from "react";
-
-import '../Styles/Pages/_global-import.scss'
-
+import { jwtDecode } from "jwt-decode";
 export const todoContext = createContext();
 
 // eslint-disable-next-line react/prop-types
 const TodosProvider = ({ children }) => {
-  const [todos, setTodo] = useState([]);
+  const [todos, setTodos] = useState([]);
+  const [user, setUser] = useState(" ");
 
   useEffect(() => {
     const localTodos = localStorage.getItem('todos')
-    setTodo(JSON.parse(localTodos))
+    setTodos(JSON.parse(localTodos))
   }, [])
 
 
   const addNewTodo = (todo) => {
-    const newTodo = [...todos, todo]
-    setTodo(newTodo)
+    const newTodo = [...todos, todo];
+    setTodos(newTodo);
     localStorage.setItem('todos', JSON.stringify(newTodo))
-  }
+  };
+  const value = { setTodos, todos, addNewTodo };
 
-  // const updateTodo = (id, todo) => {
-
-  // }
-
-  const value = { setTodo, todos, addNewTodo };
   return (
     <>
       <todoContext.Provider value={value}>{children}</todoContext.Provider>
     </>
   );
+};
+export const getEmail = () => {
+  // const jwtToken = localStorage.getItem("token");
+  // if (jwtToken) {
+  //   const bearToken = jwtToken.split(" ");
+  //   const decode = jwtDecode(bearToken[1]);
+  //   return decode.email;
+  // } else {
+  //   return " ";
+  // }
+  return '123@gmail.com'
+  console.log(decode);
 };
 
 export default TodosProvider;

@@ -28,30 +28,38 @@
     border-radius: 5px;
 
     .todo-buttons {
-      gap: 10px;
       display: flex;
       justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      width: 100%; //changed
+      height: 50px;
+      border-radius: 10px;
 
-      .active {
-        background-color: white !important;
+      a {
+        flex: 1;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: 600;
+        display: flex;
+        justify-content: center;
+        border: 1px solid #3942F166;
+        padding: 8px 0;
+        border-radius: 5px;
+
+        &:hover {
+          background-color: #3942F1;
+          color: white;
+        }
       }
 
       .button {
-        width: 150px;
-        height: 50px;
-        border-radius: 10px;
-        color: rgba(57, 66, 241, 1);
-        font-size: 20px;
-        font-weight: bold;
-        border-color: rgba(57, 66, 241, 0.4);
-        background-color: rgba(182, 185, 242, 0.4);
-
-        &:hover {
-          background-color: rgba(57, 66, 241, 1);
-          color: #ffff;
-        }
+        background-color: #3942F1;
+        color: white;
       }
     }
+
+
   }
 
   .add-todo-btn {
@@ -87,4 +95,8 @@
       }
     }
   }
+}
+
+.date-picker-dropdown {
+  z-index: 999 !important;
 }
