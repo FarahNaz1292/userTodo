@@ -1,24 +1,61 @@
 import { createContext, useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 export const todoContext = createContext();
 
 // eslint-disable-next-line react/prop-types
 const TodosProvider = ({ children }) => {
+  const [editTodos, setEditTodos] = useState("");
   const [todos, setTodos] = useState([]);
-  const [user, setUser] = useState(" ");
-
   useEffect(() => {
-    const localTodos = localStorage.getItem('todos')
-    setTodos(JSON.parse(localTodos))
-  }, [])
+    const localTodos = JSON.parse(localStorage.getItem("todos") || "[]");
+    console.log(localTodos);
 
+    if (localTodos) {
+      setTodos(localTodos); // Set retrieved todos to state
+    }
+  }, []);
+  console.log(todos);
 
   const addNewTodo = (todo) => {
-    const newTodo = [...todos, todo];
+    console.log(todo);
+
+    const newTodo = [...(todos || []), todo];
+    console.log(newTodo);
+
     setTodos(newTodo);
-    localStorage.setItem('todos', JSON.stringify(newTodo))
+    localStorage.setItem("todos", JSON.stringify(newTodo));
   };
-  const value = { setTodos, todos, addNewTodo };
+  const deleteTodos = (id) => {
+    const updateToDos = todos.filter((todo) => todo.id !== id);
+    setTodos(updateToDos);
+    localStorage.setItem("todos", JSON.stringify(updateToDos));
+  };
+  const editTodo = (id, updatedData) => {
+    const updateEditTodos = todos?.map((todo) =>
+      todo.id === id
+        ? {
+          ...todo,
+          ...updatedData,
+        }
+        : todo
+    );
+    setTodos(updateEditTodos);
+    localStorage.setItem("todos", JSON.stringify(updateEditTodos));
+  };
+  const navigate = useNavigate();
+
+  const value = {
+    setTodos,
+    todos,
+    addNewTodo,
+    deleteTodos,
+    editTodo,
+    editTodos,
+    setEditTodos,
+    getEmail,
+    navigate,
+  };
 
   return (
     <>
@@ -27,16 +64,14 @@ const TodosProvider = ({ children }) => {
   );
 };
 export const getEmail = () => {
-  // const jwtToken = localStorage.getItem("token");
-  // if (jwtToken) {
-  //   const bearToken = jwtToken.split(" ");
-  //   const decode = jwtDecode(bearToken[1]);
-  //   return decode.email;
-  // } else {
-  //   return " ";
-  // }
-  return '123@gmail.com'
-  console.log(decode);
+  const jwtToken = localStorage.getItem("user-token");
+  if (jwtToken) {
+    const bearToken = jwtToken.split(" ");
+    const decode = jwtDecode(bearToken[1]);
+    return decode.email;
+  } else {
+    return " ";
+  }
 };
 
 export default TodosProvider;

@@ -46,7 +46,7 @@ const SignUp = () => {
           <Verification email={email}></Verification>
         ) : (
           <div className="page-background">
-            <div className="d-flex align-items-center justify-content-center">
+            <div className="d-flex align-items-center justify-content-center page-content">
               <div className="form-box">
                 <div className="form-content m-5">
                   <h3>Create New Account</h3>

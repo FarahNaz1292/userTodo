@@ -12,13 +12,14 @@ import Today from "./Components/TodoContext/FilterTabs/Today.jsx";
 import Pending from "./Components/TodoContext/FilterTabs/Pending.jsx";
 import Overdue from "./Components/TodoContext/FilterTabs/Overdue.jsx";
 import Completed from "./Components/TodoContext/FilterTabs/Completed.jsx";
+import ResetPassword from "./Components/Pages/ResetPassword.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
     errorElement: (
       <div>
-        Oops Wrong way, go back to <Link to={"verification"}>signin</Link>
+        Oops Wrong way, go back to <Link to={"/"}>signin</Link>
       </div>
     ),
     children: [
@@ -77,6 +78,14 @@ const router = createBrowserRouter([
     element: (
       <TodosProvider>
         <ForgotPassword></ForgotPassword>
+      </TodosProvider>
+    ),
+  },
+  {
+    path: "resetpassword",
+    element: (
+      <TodosProvider>
+        <ResetPassword></ResetPassword>
       </TodosProvider>
     ),
   },

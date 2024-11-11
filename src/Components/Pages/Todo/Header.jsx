@@ -1,41 +1,47 @@
 import { useContext, useState } from "react";
 import { CiCirclePlus } from "react-icons/ci";
 import { getEmail, todoContext } from "../../../Provider/TodosProvider";
-import { NavLink } from "react-router-dom";
-import ModalComponent from "./ModalComponent";
+import { NavLink, useNavigate } from "react-router-dom";
 import { DatePicker, Modal, TimePicker } from "antd";
-import { FaRegClock } from "react-icons/fa";
+import { FaRegClock, FaSignOutAlt } from "react-icons/fa";
 import { MdOutlineDateRange } from "react-icons/md";
 import dayjs from "dayjs";
 
 const Header = () => {
-  const { todos, setTodos, addNewTodo } = useContext(todoContext);
-
+  const { addNewTodo } = useContext(todoContext);
   const [showModal, setShowModal] = useState(false);
   const [time, setTime] = useState("00:00");
   const [date, setDate] = useState(dayjs());
   const [taskName, setTaskName] = useState("");
-  const [user, setUser] = useState("");
   const [error, setError] = useState("");
+  const dateFormat = "MM/DD/YYYY";
+  const navigate = useNavigate();
+  const email = getEmail();
   const handleSubmit = (e) => {
     e.preventDefault();
     if (taskName && time) {
       setError("");
+      const data = {
+        email,
+        taskName,
+        date,
+        id: Math.ceil(Math.random() * 100),
+        time,
+        isCompleted: false,
+      };
+      console.log(data);
+      addNewTodo(data);
+      setTime("");
+      setDate("");
+      setShowModal(false);
+    } else {
+      setError("Please fill out all feilds!");
     }
-
-    const email = getEmail();
-
-    const todo = {
-      id,
-      taskName,
-      date,
-      time,
-      email,
-    }
-
-    addNewTodo(todo)
   };
-
+  const handleClick = () => {
+    localStorage.setItem("user-token", "");
+    navigate("/signin");
+  };
 
   return (
     <>
@@ -44,48 +50,59 @@ const Header = () => {
         <div className="header-todo">
           <h2>Todo App</h2>
         </div>
-        <div className="btn-segement">
-          <div className="todo-buttons">
-            <NavLink
-              to="/"
-              className={({ isActive }) =>
-                isActive ? "button" : ""
-              }
+        <div className="d-flex align-items-center justify-content-between">
+          <div className="btn-segement">
+            <div className="todo-buttons">
+              {" "}
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  isActive ? "button" : "button-inActive"
+                }
+              >
+                Home
+              </NavLink>
+              <NavLink
+                to="/today"
+                className={({ isActive }) =>
+                  isActive ? "button" : "button-inActive"
+                }
+              >
+                Today
+              </NavLink>
+              <NavLink
+                to="/pending"
+                className={({ isActive }) =>
+                  isActive ? "button" : "button-inActive"
+                }
+              >
+                Pending
+              </NavLink>
+              <NavLink
+                to="/overdue"
+                className={({ isActive }) =>
+                  isActive ? "button" : "button-inActive"
+                }
+              >
+                Overdue
+              </NavLink>
+              <NavLink
+                to="/completed"
+                className={({ isActive }) => (isActive ? "button" : "")}
+              >
+                Completed
+              </NavLink>
+            </div>
+          </div>
+          <div>
+            <button
+              onClick={handleClick}
+              className="btn btn-primary mx-3 border-0"
             >
-              Home
-            </NavLink>
-            <NavLink
-              to="/today"
-              className={({ isActive }) =>
-                isActive ? "button" : ""
-              }
-            >
-              Today
-            </NavLink>
-            <NavLink
-              to="/pending"
-              className={({ isActive }) =>
-                isActive ? "button" : ""
-              }
-            >
-              Pending
-            </NavLink>
-            <NavLink
-              to="/overdue"
-              className={({ isActive }) =>
-                isActive ? "button" : ""
-              }
-            >
-              Overdue
-            </NavLink>
-            <NavLink
-              to="/completed"
-              className={({ isActive }) =>
-                isActive ? "button" : ""
-              }
-            >
-              Completed
-            </NavLink>
+              {" "}
+              <FaSignOutAlt className="fs-4" />
+              Sign out
+            </button>
           </div>
         </div>
         <div className="d-flex flex-column">
@@ -102,12 +119,11 @@ const Header = () => {
             </button>
             {showModal && (
               <Modal
-                zIndex={10}
-                open={showModal}
-                onCancel={() => setShowModal(false)}
-                maskClosable={false}
                 centered
-                footer={false}
+                open={showModal}
+                onOk={handleSubmit}
+                okText={"Add your Schediule"}
+                onCancel={() => setShowModal(false)}
               >
                 <div>
                   <div>
@@ -136,30 +152,27 @@ const Header = () => {
                         Choose a Date
                       </p>
                       <DatePicker
-                        selected={date}
+                        defaultValue={dayjs("10/01/2024", dateFormat)}
+                        format={dateFormat}
                         onChange={(date) => setDate(date)}
-                        popupClassName={"date-picker-dropdown"}
                       />
                     </div>
-                    <div className="time-picker d-flex align-items-center justify-content-center">
+                    <div className="d-flex align-items-center justify-content-center">
                       <p className="modal-input fs-4 m-2">
                         <FaRegClock />
                         Choose a time
                       </p>
-                      <TimePicker use12Hours format="h:mm a" onChange={(time) => setTime(time)} />
+                      <TimePicker
+                        use12Hours
+                        format="h:mm a"
+                        onChange={setTime}
+                      />
                     </div>
                     {error && (
                       <div>
                         <p>{error}</p>
                       </div>
                     )}
-                    <button
-                      className="mt-4"
-                      type="button"
-                      onClick={handleSubmit}
-                    >
-                      Add Your Schedule
-                    </button>
                   </form>
                 </div>
               </Modal>
