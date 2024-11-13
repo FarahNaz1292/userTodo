@@ -10,7 +10,7 @@ import { DatePickerInput, TimeInput } from '@mantine/dates';
 
 
 const Header = () => {
-  const { addNewTodo } = useContext(todoContext);
+  const { dispatch, actionTypes } = useContext(todoContext);
   const [showModal, setShowModal] = useState(false);
   const [time, setTime] = useState("00:00");
   const [date, setDate] = useState(dayjs());
@@ -33,7 +33,7 @@ const Header = () => {
         isCompleted: false,
       };
       console.log(data);
-      addNewTodo(data);
+      dispatch({ type: actionTypes.ADD_TODO, todo: data })
       setTime("");
       setDate("");
       setShowModal(false);

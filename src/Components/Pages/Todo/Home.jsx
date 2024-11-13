@@ -9,7 +9,7 @@ const Home = () => {
 
 
 
-  const { todos } = useContext(todoContext);
+  const { state } = useContext(todoContext);
 
 
 
@@ -22,7 +22,7 @@ const Home = () => {
           <div className="task-rendering-block">
             <div className="task-rendering-inner-block">
               <div>
-                <TodoTable filterTodo={todos} />
+                <TodoTable filterTodo={state.todos} />
               </div>
             </div>
           </div>

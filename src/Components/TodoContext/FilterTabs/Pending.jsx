@@ -5,10 +5,10 @@ import nodata from "../../../assets/images/noData.png";
 
 const Pending = () => {
   const [pendingTodo, setPendingTodo] = useState([]);
-  const { todos } = useContext(todoContext);
+  const { state } = useContext(todoContext);
   useEffect(() => {
-    setPendingTodo(todos.filter((pending) => pending.isCompleted === false));
-  }, [todos]);
+    setPendingTodo(state.todos.filter((pending) => pending.isCompleted === false));
+  }, [state]);
   return (
     <>
       <div>

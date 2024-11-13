@@ -9,7 +9,7 @@ import { ActionIcon, Checkbox, Modal } from "@mantine/core";
 import { DatePickerInput, TimeInput } from "@mantine/dates";
 
 const TodoTable = (props) => {
-  const { todos, deleteTodos, editTodo, setTodos } = useContext(todoContext);
+  const { todos, deleteTodos, setTodos, state, dispatch, actionTypes } = useContext(todoContext);
   const [showEditModal, setEditModal] = useState(false);
   const [error, setError] = useState("");
   const email = getEmail();
@@ -49,7 +49,10 @@ const TodoTable = (props) => {
         time: editTime,
       };
       console.log(editData);
-      editTodo(selectTodo.id, editData);
+      // dispatch(selectTodo.id, editData);
+      dispatch(
+        { type: actionTypes.EDIT_TODO, id: selectTodo.id, updatedData: editData }
+      );
       setEditTime("");
       setEditDate("");
       setEditModal(false);
@@ -57,9 +60,13 @@ const TodoTable = (props) => {
       setError("Please fill out all feilds!");
     }
   };
+
+
   const handleEdit = (todo) => {
     setEditModal(true);
     setSelectTodo(todo);
+    setEditDate(dayjs(todo.date))
+    setEditTime(todo.time)
   };
 
   const ref = useRef(null);
@@ -187,13 +194,13 @@ const TodoTable = (props) => {
                       <p>{error}</p>
                     </div>
                   )}
-                  {/* <button
-                className="m-4 add-todo-btn"
-                type="button"
-                onClick={handleEditSubmit}
-              >
-                Edit Your Schedule
-              </button> */}
+                  <button
+                    className="m-4 add-todo-btn"
+                    type="submit"
+                  // onClick={handleEditSubmit}
+                  >
+                    Edit Your Schedule
+                  </button>
                 </form>
               </div>
             </Modal>

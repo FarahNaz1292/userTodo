@@ -4,11 +4,11 @@ import TodoTable from "../../SharedPages/TodoTable";
 import nodata from "../../../assets/images/noData.png";
 
 const Completed = () => {
-  const { todos } = useContext(todoContext);
+  const { state } = useContext(todoContext);
   const [completedTodo, setCompletedTodo] = useState([]);
   useEffect(() => {
-    setCompletedTodo(todos.filter((schedule) => schedule.isCompleted === true));
-  }, [todos]);
+    setCompletedTodo(state.todos.filter((schedule) => schedule.isCompleted === true));
+  }, [state]);
   console.log(completedTodo);
 
   return (
